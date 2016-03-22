@@ -2,7 +2,7 @@ import * as gulp from 'gulp';
 import * as gulpLoadPlugins from 'gulp-load-plugins';
 import {join} from 'path';
 import * as slash from 'slash';
-import {APP_SRC, APP_DEST, APP_BASE, DEPENDENCIES} from '../../config';
+import {APP_SRC, APP_DEST, APP_PATH, APP_BASE, DEPENDENCIES} from '../../config';
 import {templateLocals} from '../../utils';
 const plugins = <any>gulpLoadPlugins();
 
@@ -38,8 +38,10 @@ function mapPath(dep: any) {
 }
 
 function transformPath() {
-  return function (filepath: string) {
-    arguments[0] = join(APP_BASE, filepath) + `?${Date.now()}`;
+  return function(filepath: string) {
+    // Angle Start
+    arguments[0] = join(APP_PATH, APP_BASE, filepath) + `?${Date.now()}`;
+    // Angle End
     return slash(plugins.inject.transform.apply(plugins.inject.transform, arguments));
   };
 }

@@ -4,7 +4,7 @@ import * as merge from 'merge-stream';
 import * as autoprefixer from 'autoprefixer';
 import * as cssnano from 'cssnano';
 import {join} from 'path';
-import {APP_SRC, TMP_DIR, CSS_PROD_BUNDLE, CSS_DEST, APP_DEST, BROWSER_LIST, ENV, DEPENDENCIES} from '../../config';
+import {APP_SRC, TMP_DIR, CSS_PROD_BUNDLE, CSS_DEST, APP_DEST, APP_PATH, BROWSER_LIST, ENV, DEPENDENCIES} from '../../config';
 const plugins = <any>gulpLoadPlugins();
 
 const processors = [
@@ -25,6 +25,9 @@ if (isProd) {
 
 function prepareTemplates() {
   return gulp.src(join(APP_SRC, '**', '*.html'))
+    // Angle Start
+    .pipe(plugins.replace('[BASE]', join(APP_PATH, APP_DEST)))
+    // Angle End
     .pipe(gulp.dest(TMP_DIR));
 }
 

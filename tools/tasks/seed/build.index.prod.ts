@@ -1,11 +1,13 @@
 import * as gulp from 'gulp';
 import * as gulpLoadPlugins from 'gulp-load-plugins';
-import {join, sep, normalize} from 'path';
+import {join} from 'path';
 import * as slash from 'slash';
 import {templateLocals} from '../../utils';
 import {
   APP_SRC,
   APP_DEST,
+  APP_PATH,
+  APP_BASE,
   CSS_DEST,
   JS_DEST,
   CSS_PROD_BUNDLE,
@@ -23,10 +25,10 @@ export = () => {
 }
 
 function inject(...files: Array<string>) {
-    return plugins.inject(gulp.src(files, { read: false }), {
-        files,
-        transform: transformPath()
-    });
+  return plugins.inject(gulp.src(files, { read: false }), {
+    files,
+    transform: transformPath()
+  });
 }
 
 function injectJs() {
@@ -39,8 +41,9 @@ function injectCss() {
 
 function transformPath() {
   return function(filepath: string) {
-    let path: Array<string> = normalize(filepath).split(sep);
-    arguments[0] = path.slice(3, path.length).join(sep) + `?${Date.now()}`;
+    // Angle Start
+    arguments[0] = join(APP_PATH, APP_BASE, filepath) + `?${Date.now()}`;
+    // Angle End
     return slash(plugins.inject.transform.apply(plugins.inject.transform, arguments));
   };
 }

@@ -1,9 +1,15 @@
 import {join} from 'path';
 import {SeedConfig} from './seed.config';
+import {ENVIRONMENTS} from './seed.config';
 import {InjectableDependency} from './seed.config.interfaces';
 
 export class ProjectConfig extends SeedConfig {
   PROJECT_TASKS_DIR = join(process.cwd(), this.TOOLS_DIR, 'tasks', 'project');
+
+  SCSS_INCLUDE_PATHS = [
+    require('bourbon').includePaths,
+    `${this.NODE_MODULES_PATH}node_modules/foundation-sites/scss`
+  ];
 
   constructor() {
     super();
@@ -18,8 +24,7 @@ export class ProjectConfig extends SeedConfig {
     this.NPM_DEPENDENCIES = seedDependencies.concat(additional_deps);
 
     this.APP_ASSETS = [
-      // {src: `${this.ASSETS_SRC}/css/toastr.min.css`, inject: true},
-      // {src: `${this.APP_DEST}/assets/scss/global.css`, inject: true},
+      { src: `${this.TMP_DIR}/css/all.css`, inject: true, vendor: true, env: ENVIRONMENTS.PRODUCTION },
       { src: `${this.ASSETS_SRC}/main.css`, inject: true },
     ];
   }

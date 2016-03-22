@@ -4,8 +4,8 @@ import {APP_SRC, APP_DEST, ASSETS_SRC} from '../../config';
 
 // TODO There should be more elegant to prevent empty directories from copying
 let es: any = require('event-stream');
-var onlyDirs = function (es: any) {
-  return es.map(function (file: any, cb: any) {
+var onlyDirs = function(es: any) {
+  return es.map(function(file: any, cb: any) {
     if (file.stat.isFile()) {
       return cb(null, file);
     } else {
@@ -16,12 +16,17 @@ var onlyDirs = function (es: any) {
 
 export = () => {
   return gulp.src([
-      join(APP_SRC, '**'),
-      '!' + join(APP_SRC, '**', '*.ts'),
-      '!' + join(APP_SRC, '**', '*.css'),
-      '!' + join(APP_SRC, '**', '*.html'),
-      '!' + join(ASSETS_SRC, '**', '*.js')
-    ])
+    join(APP_SRC, '**'),
+    '!' + join(APP_SRC, '**', '*.ts'),
+    '!' + join(APP_SRC, '**', '*.css'),
+    '!' + join(APP_SRC, '**', '*.html'),
+    '!' + join(ASSETS_SRC, '**', '*.js'),
+    // Angle Start
+    '!' + join(APP_SRC, '**', '*.scss'),
+    '!' + join(ASSETS_SRC, 'scss'),
+    '!' + join(ASSETS_SRC, 'scss', '**')
+    // Angle End
+  ])
     .pipe(onlyDirs(es))
     .pipe(gulp.dest(APP_DEST));
 }

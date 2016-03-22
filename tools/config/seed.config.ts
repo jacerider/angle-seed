@@ -50,6 +50,20 @@ export class SeedConfig {
 
   NG2LINT_RULES        = customRules();
 
+  // Angle Start
+  APP_PATH = '/app';
+  NODE_MODULES_PATH = normalize(join(__dirname, '../../'));
+  SCSS_DEPENDENCIES = [
+    join(this.APP_SRC, 'assets', 'scss', '*.scss')
+  ];
+  SCSS_COMPATIBILITY = [
+    'last 2 versions',
+    'ie >= 9',
+    'and_chr >= 2.3'
+  ];
+  SCSS_LINT = this.SCSS_DEPENDENCIES;
+  // Angle End
+
   NPM_DEPENDENCIES: InjectableDependency[] = [
     { src: 'systemjs/dist/system-polyfills.src.js', inject: 'shims' },
     { src: 'reflect-metadata/Reflect.js', inject: 'shims' },
@@ -118,7 +132,7 @@ export class SeedConfig {
     defaultJSExtensions: true,
     packageConfigPaths: [`${this.APP_BASE}node_modules/*/package.json`],
     paths: {
-      [this.BOOTSTRAP_MODULE]: `${this.APP_BASE}${this.BOOTSTRAP_MODULE}`,
+      [this.BOOTSTRAP_MODULE]: join('app', this.DEV_DEST, this.BOOTSTRAP_MODULE),
       'angular2/*': `${this.APP_BASE}angular2/*`,
       'rxjs/*': `${this.APP_BASE}rxjs/*`,
       '*': `${this.APP_BASE}node_modules/*`
