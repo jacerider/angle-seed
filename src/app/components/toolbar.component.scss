@@ -1,0 +1,23 @@
+@import "imports";
+
+:host {
+  background:$primary-color;
+  color: rgba(255, 255, 255, 0.87);
+  display: block;
+  height: 48px;
+  padding: 0 16px;
+
+  h1 {
+    display: inline;
+    font-size: 20px;
+    font-weight: normal;
+    letter-spacing: 0.1px;
+    line-height: 48px;
+    margin: 0;
+  }
+
+  img{
+    height: 25px;
+    vertical-align: middle;
+  }
+}

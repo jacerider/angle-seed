@@ -15,8 +15,9 @@ export class ProjectConfig extends SeedConfig {
     super();
     // this.APP_TITLE = 'Put name of your app here';
     let additional_deps: InjectableDependency[] = [
-      // {src: 'jquery/dist/jquery.min.js', inject: 'libs'},
-      // {src: 'lodash/lodash.min.js', inject: 'libs'},
+      { src: 'jquery/dist/jquery.min.js', inject: 'libs' },
+      { src: 'sweetalert2/dist/sweetalert2.min.js', inject: 'libs' },
+      { src: 'sweetalert2/dist/sweetalert2.css', inject: true, vendor: true }
     ];
 
     const seedDependencies = this.NPM_DEPENDENCIES;

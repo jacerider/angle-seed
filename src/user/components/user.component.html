@@ -1,0 +1,9 @@
+<div class="user">
+  <div [hidden]="user || error">Loading User</div>
+  <div [hidden]="!error"><div class="alert callout" [innerHTML]="error"></div></div>
+  <div *ngIf="user" >
+    <h1>{{ user.name[0].value }}</h1>
+    <p><strong>Email:</strong> {{ user.mail[0].value }}</p>
+    <p><strong>Created:</strong> {{ user.created[0].value }}</p>
+  </div>
+</div>

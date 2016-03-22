@@ -1,4 +1,7 @@
-<nav>
-  <a [routerLink]="['Home']">HOME</a>
-  <a [routerLink]="['About']">ABOUT</a>
-</nav>
+<ul class="menu">
+  <li><a [routerLink]="['Home']">HOME</a></li>
+  <li><a [routerLink]="['Secure']" [auth]>SECURE</a></li>
+  <li><a [routerLink]="['Login']" [auth]="'hide'">LOGIN</a></li>
+  <li><a [routerLink]="['UserCurrent']" [auth]>ACCOUNT</a></li>
+  <li><a [routerLink]="['Logout']" [auth]>LOGOUT</a></li>
+</ul>

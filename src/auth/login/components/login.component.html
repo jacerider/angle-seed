@@ -1,0 +1,14 @@
+<div class="login">
+  <h1>Login</h1>
+  <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+    <input type="text" [(ngModel)]="model.name" placeholder="Username" required ngControl="name" #name="ngForm">
+    <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+      Name is required
+    </div>
+    <input type="password" [(ngModel)]="model.pass" placeholder="Password" required ngControl="pass">
+    <div class="button-group">
+      <button type="submit" class="button" [disabled]="!loginForm.form.valid || submitted">Submit</button>
+      <a [routerLink]="['Recover']" class="button secondary">Forgot Your Password?</a>
+    </div>
+  </form>
+</div>

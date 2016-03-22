@@ -1,0 +1,8 @@
+<div class="recover">
+  <h1>Recover Password</h1>
+  <form (ngSubmit)="onSubmit()" #recoverForm="ngForm">
+    <input type="text" [(ngModel)]="model.name" placeholder="Username or email address" required ngControl="name" #name="ngForm" aria-describedby="passwordHelpText">
+    <p class="help-text" id="passwordHelpText">Password reset instructions will be sent to your registered email address.</p>
+    <button type="submit" class="button" [disabled]="!recoverForm.form.valid || submitted">Submit</button>
+  </form>
+</div>

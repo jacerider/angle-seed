@@ -1,0 +1,11 @@
+.ng-valid[required] {
+  border-left: 5px solid #42a948;
+
+  div{
+    background:white;
+  }
+}
+
+.ng-invalid {
+  border-left: 5px solid #a93f2c;
+}
