@@ -12,7 +12,8 @@ import {
   SCSS_INCLUDE_PATHS,
   SCSS_DEPENDENCIES,
   SCSS_COMPATIBILITY,
-  SCSS_LINT
+  SCSS_LINT,
+  DEPENDENCIES
 } from '../../config';
 const plugins = <any>gulpLoadPlugins();
 
@@ -29,7 +30,9 @@ function prepareTemplates() {
 function processComponentScss() {
   let scss_components = [
     join(APP_SRC, '**', '*.scss'),
-    '!' + join(APP_SRC, 'assets', '**', '*.scss')
+    join(APP_SRC, '**', '*.css'),
+    '!' + join(APP_SRC, 'assets', '**', '*.scss'),
+    '!' + join(APP_SRC, 'assets', '**', '*.css')
   ];
   // We inject our local utilities so they can be included by internal
   // componenets.
@@ -52,7 +55,8 @@ function processComponentScss() {
 }
 
 function processExternalScss() {
-  return gulp.src(SCSS_DEPENDENCIES)
+  console.log(SCSS_DEPENDENCIES.concat(getExternalCss().map(r => r.src)));
+  return gulp.src(SCSS_DEPENDENCIES.concat(getExternalCss().map(r => r.src)))
     .pipe(plugins.plumber())
     .pipe(plugins.sourcemaps.init())
     .pipe(isProd ? plugins.cached('process-external-scss') : plugins.util.noop())
@@ -71,6 +75,10 @@ function processExternalScss() {
     .on('finish', function() {
       gulp.src(SCSS_LINT).pipe(plugins.scssLint());
     });
+}
+
+function getExternalCss() {
+  return DEPENDENCIES.filter(d => /\.css$/.test(d.src));
 }
 
 export = () => merge(processComponentScss(), prepareTemplates(), processExternalScss());
