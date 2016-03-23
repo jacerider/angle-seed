@@ -3,7 +3,7 @@ import {Injectable, EventEmitter} from 'angular2/core';
 declare var window: any;
 
 interface DrupalStateUser {
-  uid: string;
+  uid: number;
   name: string;
   mail: string;
   roles: Array<any>;
