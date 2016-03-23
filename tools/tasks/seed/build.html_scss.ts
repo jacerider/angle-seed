@@ -55,7 +55,6 @@ function processComponentScss() {
 }
 
 function processExternalScss() {
-  console.log(SCSS_DEPENDENCIES.concat(getExternalCss().map(r => r.src)));
   return gulp.src(SCSS_DEPENDENCIES.concat(getExternalCss().map(r => r.src)))
     .pipe(plugins.plumber())
     .pipe(plugins.sourcemaps.init())
