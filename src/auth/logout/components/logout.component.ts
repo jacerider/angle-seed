@@ -6,8 +6,7 @@ import {AlertService} from '../../../shared/services/alert.service';
 @Component({
   selector: 'sd-logout',
   moduleId: module.id,
-  templateUrl: './logout.component.html',
-  styleUrls: ['./logout.component.css'],
+  templateUrl: './logout.component.html'
 })
 export class LogoutComponent {
   message = '';

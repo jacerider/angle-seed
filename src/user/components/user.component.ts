@@ -6,7 +6,6 @@ import {ROUTER_DIRECTIVES, RouteParams} from 'angular2/router';
   selector: 'sd-user',
   moduleId: module.id,
   templateUrl: './user.component.html',
-  styleUrls: ['./user.component.css'],
   directives: [ROUTER_DIRECTIVES]
 })
 export class UserComponent {
