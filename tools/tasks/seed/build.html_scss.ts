@@ -18,6 +18,14 @@ const plugins = <any>gulpLoadPlugins();
 
 const isProd = ENV === 'prod';
 
+function prepareTemplates() {
+  return gulp.src(join(APP_SRC, '**', '*.html'))
+    // Angle Start
+    .pipe(plugins.replace('[BASE]', join(APP_PATH, APP_DEST)))
+    // Angle End
+    .pipe(gulp.dest(TMP_DIR));
+}
+
 function processComponentScss() {
   let scss_components = [
     join(APP_SRC, '**', '*.scss'),
@@ -65,4 +73,4 @@ function processExternalScss() {
     });
 }
 
-export = () => merge(processComponentScss(), processExternalScss());
+export = () => merge(processComponentScss(), prepareTemplates(), processExternalScss());
