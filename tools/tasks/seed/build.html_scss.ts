@@ -67,7 +67,7 @@ function processExternalScss() {
     }))
     .pipe(isProd ? plugins.util.noop() : plugins.sourcemaps.write('.'))
     .pipe(isProd ? plugins.concat(CSS_PROD_BUNDLE) : plugins.util.noop())
-    .pipe(gulp.dest(isProd ? `${TMP_DIR}/css` : join(APP_DEST, 'assets')))
+    .pipe(gulp.dest(isProd ? `${APP_DEST}/css` : `${APP_DEST}/assets`))
     .on('finish', function() {
       gulp.src(SCSS_LINT).pipe(plugins.scssLint());
     });
