@@ -25,7 +25,7 @@ export class ProjectConfig extends SeedConfig {
     this.NPM_DEPENDENCIES = seedDependencies.concat(additional_deps);
 
     this.APP_ASSETS = [
-      { src: `${this.ASSETS_SRC}/main.css`, inject: true, vendor: true, env: ENVIRONMENTS.DEVELOPMENT },
+      { src: `${this.ASSETS_SRC}/css/main.css`, inject: true, vendor: true, env: ENVIRONMENTS.DEVELOPMENT },
     ];
   }
 }
