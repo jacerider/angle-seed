@@ -13,7 +13,7 @@ function processAssets() {
     // Angle Start
     '!' + join(APP_SRC, '**', '*.scss'),
     '!' + join(ASSETS_SRC, 'scss'),
-    '!' + join(ASSETS_SRC, 'scss', '**')
+    '!' + join(ASSETS_SRC, 'scss', '*')
     // Angle End
   ])
     .pipe(gulp.dest(APP_DEST));

@@ -68,9 +68,10 @@ function processExternalScss() {
     .pipe(plugins.autoprefixer({
       browsers: SCSS_COMPATIBILITY
     }))
+    .pipe(plugins.replace('[BASE]', join(APP_PATH, APP_DEST)))
     .pipe(isProd ? plugins.util.noop() : plugins.sourcemaps.write('.'))
     .pipe(isProd ? plugins.concat(CSS_PROD_BUNDLE) : plugins.util.noop())
-    .pipe(gulp.dest(isProd ? `${APP_DEST}/css` : `${APP_DEST}/assets`))
+    .pipe(gulp.dest(isProd ? `${APP_DEST}/css` : `${APP_DEST}/assets/css`))
     .on('finish', function() {
       gulp.src(SCSS_LINT).pipe(plugins.scssLint());
     });
