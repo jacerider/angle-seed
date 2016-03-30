@@ -1,4 +1,4 @@
-import {PORT} from '../../config';
+import {PORT, APP_DEST} from '../../config';
 import * as browserSync from 'browser-sync';
 
 let runServer = () => {
@@ -6,7 +6,9 @@ let runServer = () => {
   // Angle Start
   browserSync({
     port: PORT,
-    proxy: 'localhost'
+    proxy: 'localhost',
+    files: `${APP_DEST}/assets/css/*.css`,
+    injectChanges: true
   });
   // Angle End
 };
