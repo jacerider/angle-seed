@@ -22,4 +22,17 @@ export = () => {
   ])
     .pipe(onlyDirs(es))
     .pipe(gulp.dest(APP_DEST));
+  // return gulp.src([
+  //   join(APP_SRC, '**'),
+  //   '!' + join(APP_SRC, '**', '*.ts'),
+  //   '!' + join(APP_SRC, '**', '*.css'),
+  //   '!' + join(APP_SRC, '**', '*.html'),
+  //   '!' + join(ASSETS_SRC, '**', '*.js'),
+  //   // Angle Start
+  //   '!' + join(APP_SRC, '**', '*.scss'),
+  //   '!' + join(ASSETS_SRC, 'scss', '**', '*.scss')
+  //   // Angle End
+  // ])
+  //   .pipe(onlyDirs(es))
+  //   .pipe(gulp.dest(APP_DEST));
 }

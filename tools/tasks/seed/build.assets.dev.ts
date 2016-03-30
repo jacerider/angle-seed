@@ -2,7 +2,7 @@ import * as gulp from 'gulp';
 import * as gulpLoadPlugins from 'gulp-load-plugins';
 import * as merge from 'merge-stream';
 import {join} from 'path';
-import {APP_SRC, ASSETS_SRC, APP_DEST, APP_PATH} from '../../config';
+import {APP_SRC, ASSETS_SRC, APP_DEST, ASSETS_BASE_DEST} from '../../config';
 const plugins = <any>gulpLoadPlugins();
 
 function processAssets() {
@@ -23,7 +23,7 @@ function processTemplates() {
   return gulp.src([
     join(APP_SRC, '**', '*.html')
   ])
-    .pipe(plugins.replace('[BASE]', join(APP_PATH, APP_DEST)))
+    .pipe(plugins.replace('[BASE]', ASSETS_BASE_DEST))
     .pipe(gulp.dest(APP_DEST));
 }
 

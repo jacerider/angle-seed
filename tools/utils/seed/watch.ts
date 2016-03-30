@@ -9,11 +9,10 @@ export function watch(taskname: string) {
   return function () {
     plugins.watch([
       join(APP_SRC, '**'),
-      '!' + join(APP_SRC, '**', '*.scss'),
+      '!' + join(APP_SRC, 'assets', '**', '*.scss'),
     ], (e:any) =>
       runSequence(taskname, () => notifyLiveReload(e))
     );
-
     // Angle Start
     // Watch SCSS changes seperately
     plugins.watch(SCSS_DEPENDENCIES.concat([join(APP_SRC, 'assets', 'scss', '**', '*.scss')]), (e: any) =>

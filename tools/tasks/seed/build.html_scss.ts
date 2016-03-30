@@ -4,7 +4,6 @@ import * as merge from 'merge-stream';
 import {join, normalize} from 'path';
 import {
   APP_DEST,
-  APP_PATH,
   APP_SRC,
   TMP_DIR,
   ENV,
@@ -13,6 +12,7 @@ import {
   SCSS_DEPENDENCIES,
   SCSS_COMPATIBILITY,
   SCSS_LINT,
+  ASSETS_BASE_DEST,
   DEPENDENCIES
 } from '../../config';
 const plugins = <any>gulpLoadPlugins();
@@ -22,7 +22,7 @@ const isProd = ENV === 'prod';
 function prepareTemplates() {
   return gulp.src(join(APP_SRC, '**', '*.html'))
     // Angle Start
-    .pipe(plugins.replace('[BASE]', join(APP_PATH, APP_DEST)))
+    .pipe(plugins.replace('[BASE]', ASSETS_BASE_DEST))
     // Angle End
     .pipe(gulp.dest(TMP_DIR));
 }
@@ -47,7 +47,7 @@ function processComponentScss() {
     .pipe(plugins.autoprefixer({
       browsers: SCSS_COMPATIBILITY
     }))
-    .pipe(plugins.replace('[BASE]', join(APP_PATH, APP_DEST)))
+    .pipe(plugins.replace('[BASE]', ASSETS_BASE_DEST))
     .pipe(gulp.dest(isProd ? TMP_DIR : APP_DEST))
     .on('finish', function() {
       gulp.src(SCSS_LINT).pipe(plugins.scssLint());
@@ -68,7 +68,7 @@ function processExternalScss() {
     .pipe(plugins.autoprefixer({
       browsers: SCSS_COMPATIBILITY
     }))
-    .pipe(plugins.replace('[BASE]', join(APP_PATH, APP_DEST)))
+    .pipe(plugins.replace('[BASE]', ASSETS_BASE_DEST))
     .pipe(isProd ? plugins.util.noop() : plugins.sourcemaps.write('.'))
     .pipe(isProd ? plugins.concat(CSS_PROD_BUNDLE) : plugins.util.noop())
     .pipe(gulp.dest(isProd ? `${APP_DEST}/css` : `${APP_DEST}/assets/css`))

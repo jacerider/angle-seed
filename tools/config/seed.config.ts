@@ -62,6 +62,7 @@ export class SeedConfig {
     'and_chr >= 2.3'
   ];
   SCSS_LINT = this.SCSS_DEPENDENCIES;
+  ASSETS_BASE_DEST = this.ENV === 'dev' ? join(this.APP_PATH, this.APP_DEST, 'assets') : join(this.APP_PATH, this.APP_DEST);
   // Angle End
 
   NPM_DEPENDENCIES: InjectableDependency[] = [
@@ -133,6 +134,7 @@ export class SeedConfig {
     packageConfigPaths: [`${this.APP_BASE}node_modules/*/package.json`],
     paths: {
       [this.BOOTSTRAP_MODULE]: join(this.APP_PATH, this.DEV_DEST, this.BOOTSTRAP_MODULE),
+      'app/*': join(this.APP_PATH, this.DEV_DEST, '*'),
       'angular2/*': `${this.APP_BASE}angular2/*`,
       'rxjs/*': `${this.APP_BASE}rxjs/*`,
       '*': `${this.APP_BASE}node_modules/*`
